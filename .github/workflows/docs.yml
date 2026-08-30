@@ -1,0 +1,39 @@
+name: Auto-Update Documentation with AI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "test_query.md"
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Generate documentation using Claude AI
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python update_docs.py
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📝 AI-generated documentation update"
+          file_pattern: test_query.md
+          commit_user_name: "AI-docs-bot[bot]"
+          commit_user_email: "ai-docs-bot@users.noreply.github.com"
+          commit_author: "AI-docs-bot[bot] <ai-docs-bot@users.noreply.github.com>"
