@@ -1,4 +1,5 @@
 -- Test Query: Get active users from last 30 days
+-- Test: Trigger workflow
 SELECT 
     user_id,
     username,
