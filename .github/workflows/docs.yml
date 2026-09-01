@@ -1,5 +1,8 @@
 name: Auto-Update Documentation with AI
 
+permissions:                         
+  contents: write 
+
 on:
   push:
     branches: [main]
