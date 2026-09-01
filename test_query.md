@@ -1,28 +1,11 @@
-# SQL Query Documentation: Active Users
+## SQL Query Explanation
 
-## Query Name
+This SQL query is designed to get active users from the last 30 days. It retrieves the user ID, username, email, last login date, and creation date of users from the `users` table. 
 
-`get_active_users_last_30_days`
+Here is a breakdown of the query:
+- **SELECT**: Specifies the columns to be retrieved from the `users` table.
+- **FROM**: Specifies the source table as `users`.
+- **WHERE**: Filters the results to only include users with a status of 'active' and a last login date within the last 30 days.
+- **ORDER BY**: Sorts the results based on the creation date in descending order.
 
-## Purpose
-
-Retrieves all active users who have logged in within the last 30 days.
-
-## Test Query
-
-```sql
-SELECT
-    user_id,
-    username,
-    email,
-    last_login_date
-FROM
-    users
-WHERE
-    status = 'active'
-    AND last_login_date >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY)
-ORDER BY
-    last_login_date DESC;
-
-    tstting testing
-```
+Overall, this query is useful for identifying and retrieving information about users who have been active within the last month.
