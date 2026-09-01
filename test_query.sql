@@ -4,11 +4,12 @@ SELECT
     user_id,
     username,
     email,
-    last_login_date
+    last_login_date, 
+    created_date
 FROM 
     users
 WHERE 
     status = 'active' 
     AND last_login_date >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY)
 ORDER BY 
-    last_login_date DESC;
+    created_date DESC;
