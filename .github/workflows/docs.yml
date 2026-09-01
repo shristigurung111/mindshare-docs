@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - "test_query.md"
+      - 'test_query.md'
 
 jobs:
   update-docs:
@@ -17,15 +17,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
           pip install requests
 
-      - name: Generate documentation using Claude AI
+      - name: Generate documentation using OpenRouter AI
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.API_KEY }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: |
           python update_docs.py
 
