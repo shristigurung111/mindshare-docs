@@ -12,4 +12,4 @@ WHERE
     status = 'active' 
     AND last_login_date >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY)
 ORDER BY 
-    created_date DESC;
+     last_login_date DESC;
