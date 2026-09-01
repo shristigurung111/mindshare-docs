@@ -25,14 +25,14 @@ jobs:
 
       - name: Generate documentation using Claude AI
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.API_KEY }}
         run: |
           python update_docs.py
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📝 AI-generated documentation update"
+          commit_message: " AI-generated documentation update"
           file_pattern: test_query.md
           commit_user_name: "AI-docs-bot[bot]"
           commit_user_email: "ai-docs-bot@users.noreply.github.com"
