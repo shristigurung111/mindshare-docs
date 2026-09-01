@@ -1,15 +1,19 @@
--- Test Query: Get active users from last 30 days
--- Test: Trigger workflow
+-- Get recent orders with customer details
 SELECT 
-    user_id,
-    username,
-    email,
-    last_login_date, 
-    created_date
+    o.order_id,
+    o.order_date,
+    o.total_amount,
+    o.status,
+    c.customer_name,
+    c.email,
+    c.phone
 FROM 
-    users
+    orders o
+JOIN 
+    customers c ON o.customer_id = c.customer_id
 WHERE 
-    status = 'active' 
-    AND last_login_date >= DATE_SUB(CURRENT_DATE, INTERVAL 30 DAY)
+    o.order_date >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)
+    AND o.status IN ('completed', 'shipped')
 ORDER BY 
-     last_login_date DESC;
+    o.order_date DESC
+LIMIT 50;
