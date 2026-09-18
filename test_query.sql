@@ -6,7 +6,6 @@ SELECT
     o.status,
     c.customer_name,
     c.email,
-    c.phone
 FROM 
     orders o
 JOIN 
